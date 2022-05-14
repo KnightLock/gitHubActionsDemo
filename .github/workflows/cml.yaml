@@ -14,3 +14,6 @@ jobs:
           pip install -r requirements.txt
           python model.py
           echo "${{steps.response.outputs.result}}"
+      - name: Check run status
+        if: steps.run.outputs.status != '0'
+        run: echo "${{steps.response.outputs.result}}"
