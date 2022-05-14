@@ -11,9 +11,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install -r requirements.txt
-          python model.py
-          echo "${{steps.response.outputs.result}}"
+          echo Hello, world! && exit 1
       - name: Check run status
-        if: steps.run.outputs.status != '0'
+        if : always()
         run: echo "${{steps.response.outputs.result}}"
