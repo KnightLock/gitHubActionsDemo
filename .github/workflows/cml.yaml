@@ -14,4 +14,4 @@ jobs:
           echo Hello, world!
       - name: Check run status
         if : always()
-        run: echo "${{steps.response.outputs.result}}"
+        run: echo "${steps.response.outputs.result}"
