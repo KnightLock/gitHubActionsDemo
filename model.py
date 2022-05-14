@@ -1,6 +1,5 @@
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
 
 X = np.arange(-110, 110, 3) 
 y = np.arange(-100, 120, 3)
