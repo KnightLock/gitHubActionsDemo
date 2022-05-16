@@ -16,5 +16,5 @@ jobs:
         if: failure()
         run: |
           sudo apt-get install mailutils
-          echo "Body with msg: ${{ steps.response.outputs.result }}" | mail -s "Subject" ${{ secrets.EMAIL }}
+          echo "Body with msg: ${{ steps.response.outputs }}" | mail -s "Subject" ${{ secrets.EMAIL }}
          
