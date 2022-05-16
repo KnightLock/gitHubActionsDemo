@@ -11,7 +11,10 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo Hello, world!
-      - name: Check run status
-        if : always()
-        run: echo "${steps.response.outputs.result}"
+          echo Hello, world! && exit 1
+      - name: "Notify on failure"
+        if: failure()
+        run: |
+          sudo apt-get install mailutils
+          echo "Body with msg: ${{ steps.response.outputs.result }}" | mail -s "Subject" ${{ secrets.EMAIL }}
+         
