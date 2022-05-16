@@ -1,0 +1,20 @@
+name: model-training
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo Hello, world! && exit 1
+      - name: "Notify on failure"
+        if: failure()
+        run: |
+          sudo apt-get install mailutils
+          echo "Body with msg: ${{ steps.response.outputs }}" | mail -s "Subject" ${{ secrets.EMAIL }}
+         
